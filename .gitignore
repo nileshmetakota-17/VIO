@@ -18,7 +18,6 @@ local.properties
 keystore.properties
 .kotlin/
 .idea/
-*.apk
 *.aab
 .aws/
 .codex/

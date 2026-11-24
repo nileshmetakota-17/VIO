@@ -23,7 +23,7 @@ These are potential evaluation settings, not validated deployments. The app repo
 
 ## Install the APK
 
-An APK is the Android installation file. The workspace includes a prebuilt file at `app/VIO.apk`. Its contents may differ from the current source; build a fresh debug APK using the instructions below to test your latest changes.
+An APK is the Android installation file. The local testing APK is named **VIO.apk** and is stored at `app/VIO.apk`. After changing the source, rebuild and refresh this file using the commands below before sharing it.
 
 - **Device:** Android 7.0 (API 24) or newer, with a working camera. A physical phone is recommended for mapping and sensor testing.
 - **For GitHub downloads:** open this repository's **Releases** section and download `VIO.apk` if a release with that attachment has been published. If there is no APK attachment, build from source below.
@@ -72,15 +72,16 @@ The paths below are Linux examples. Adjust them to your Android Studio and SDK i
 export JAVA_HOME=/opt/android-studio/jbr
 export ANDROID_HOME="$HOME/Android/Sdk"
 ./gradlew :app:assembleDebug
+cp app/build/outputs/apk/debug/app-debug.apk app/VIO.apk
 ```
 
-The debug APK is `app/build/outputs/apk/debug/app-debug.apk`.
+Gradle produces `app/build/outputs/apk/debug/app-debug.apk`. The copy command refreshes `app/VIO.apk`, the file to attach to a GitHub Release as **VIO.apk**. This is a debug build for testing.
 
 Connect a phone with USB debugging on, then install:
 
 ```bash
 adb devices
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/VIO.apk
 ```
 
 Open **VIO** from the launcher. You can also run the `app` configuration from Android Studio.
